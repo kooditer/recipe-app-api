@@ -1,5 +1,4 @@
 from unittest.mock import patch
-from django.test import SimpleTestCase
 from psycopg2 import OperationalError as Psycopg2OpError
 from django.core.management import call_command
 from django.db.utils import OperationalError
@@ -14,5 +13,8 @@ class CommandTests(SimpleTestCase):
         call_command('wait_for_db')
 
         patched_check.assert_called_once_with(databases=['default'])
+
+    def test_wait_for_db_delay(self, patched_check):
+        """test waiting for database when getting """
 
 
