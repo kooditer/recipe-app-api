@@ -4,6 +4,7 @@ tests for models
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+
 class ModelTests(TestCase):
     """test models"""
 
@@ -18,7 +19,7 @@ class ModelTests(TestCase):
 
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
-        
+
     def test_new_user_email_normalized(self):
         """test email is normalized for new user"""
         sample_emails = [
@@ -45,5 +46,3 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
-        
-
