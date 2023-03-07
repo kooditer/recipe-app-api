@@ -6,6 +6,7 @@ from django.contrib.auth import (get_user_model,
 from rest_framework import serializers
 from django.utils.translation import gettext as _
 
+
 class UserSerializer(serializers.ModelSerializer):
     """serializer for the user object"""
 
@@ -26,15 +27,17 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             user.set_password(password)
             user.save()
-            
+
+        return user
+
 
 class AuthTokenSerializer(serializers.Serializer):
     """serializer for the user auth token"""
     email = serializers.EmailField()
     password = serializers.CharField(
-        style={'input_type':'password'},
-               trim_whitespace=False
-    )
+        style={'input_type': 'password'},
+        trim_whitespace=False)
+
     def validate(self, attrs):
         """validate and authenticate user"""
         email = attrs.get('email')
